@@ -75,6 +75,13 @@ public class ProjectileLine : MonoBehaviour {
 
             line.enabled = true;
         }
+        else
+        {
+            points.Add(pt);
+            line.positionCount = points.Count;
+            line.SetPosition(points.Count - 1, lastPoint);
+            line.enabled = true;
+        }
 
 
     }
