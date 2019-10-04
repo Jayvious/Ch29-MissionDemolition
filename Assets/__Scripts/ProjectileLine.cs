@@ -56,8 +56,25 @@ public class ProjectileLine : MonoBehaviour {
     public void AddPoint()
     {
         // *** Implement this code ***
+        Vector3 pt = _poi.transform.position;
+        if(points.Count > 0 && (pt - lastPoint).magnitude < minDist)
+        {
+            return;
+        }
 
+        if(points.Count == 0)
+        {
+            Vector3 launchPosDiff = pt - Slingshot.LAUNCH_POS;
 
+            points.Add(pt + launchPosDiff);
+            points.Add(pt);
+            line.positionCount = 2;
+
+            line.SetPosition(0, points[0]);
+            line.SetPosition(1, points[1]);
+
+            line.enabled = true;
+        }
 
 
     }
